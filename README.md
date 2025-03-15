@@ -1,6 +1,6 @@
 ---
 
-# Hora de Aventura Memory Game (Em Desenvolvimento)
+# Hora de Aventura Jogo da Memória (Em Desenvolvimento)
 
 Bem-vindo ao **Hora de Aventura Memory Game**, um projeto de jogo da memória inspirado no universo de *Hora de Aventura*. Este jogo está sendo desenvolvido em Python, utilizando a biblioteca `tkinter` para a interface gráfica. O objetivo é criar um jogo divertido, onde os jogadores podem testar suas habilidades de memória, combinando personagens icônicos do desenho animado!
 
@@ -55,19 +55,6 @@ Para rodar este projeto em sua máquina, você precisará ter instalado:
 
    > **Nota**: Como o jogo ainda está em desenvolvimento, alguns recursos podem estar incompletos ou ausentes.
 
-## 📂 Estrutura do Projeto
-
-```
-steven-universe-memory-game/
-│
-├── assets/                    # Imagens e recursos do jogo
-│   ├── characters/            # Cartas dos personagens
-│   └── icons/                 # Ícones do jogo
-│
-├── memory_game.py             # Arquivo principal do jogo
-├── README.md                  # Informações do projeto
-└── requirements.txt           # Dependências (se aplicável)
-```
 
 ## 💡 Contribuições
 
