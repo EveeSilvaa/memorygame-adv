@@ -3,91 +3,23 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Steven Universe Memory Game</title>
-    <style>
-      body {
-        margin: 0;
-        font-family: Arial, sans-serif;
-        background-color: #f0f0f0;
-        text-align: center;
-      }
-      #menu {
-        padding: 20px;
-        background: url("src/menu_background.png") no-repeat center center fixed;
-        background-size: cover;
-      }
-      button {
-        font-size: 18px;
-        padding: 10px 20px;
-        margin: 10px;
-        border: none;
-        border-radius: 5px;
-        background-color: #008cba;
-        color: white;
-        cursor: pointer;
-        transition: background-color 0.3s;
-      }
-      button:hover {
-        background-color: #005f6a;
-      }
-      .game-container {
-        display: none;
-        margin: 20px auto;
-        max-width: 800px;
-      }
-      .card {
-        width: 100px;
-        height: 100px;
-        background-color: #f8f8f8;
-        border-radius: 8px;
-        display: inline-block;
-        margin: 5px;
-        vertical-align: top;
-        cursor: pointer;
-        position: relative;
-      }
-      .card img {
-        width: 100%;
-        height: 100%;
-        border-radius: 8px;
-        display: none;
-      }
-      .card.flipped img {
-        display: block;
-      }
-      .card.matched {
-        background-color: #d4edda;
-      }
-      .card.flipped.matched img {
-        display: block;
-      }
-      .card.hidden img {
-        display: none;
-      }
-      .card.flip-animation {
-        animation: flip 0.5s;
-      }
-      @keyframes flip {
-        0% {
-          transform: rotateY(0);
-        }
-        100% {
-          transform: rotateY(180deg);
-        }
-      }
-    </style>
-  </head>
+    <title>Jogo da Memória</title>
+    <link rel="stylesheet"  href="styles/styles.css"/>
+
+
+</head>
   <body>
     <div id="menu">
-      <h1>Steven Universe Memory Game</h1>
-      <button onclick="showModeSelection()">Start Game</button>
+      <h1>Jogo da Memória Hora de Aventura</h1>
+      <p>Olá, seja bem-vindo(a), espero que se divirta!</p>
+      <button onclick="showModeSelection()">Iniciar Jogo</button>
     </div>
     <div class="game-container" id="game-container">
-      <h2 id="game-title">Select Difficulty</h2>
+      <h2 id="game-title">Selecione a dificuldade</h2>
       <div id="difficulty-selection">
-        <button onclick="startGame('practice', 3, 4)">Easy (3x4)</button>
-        <button onclick="startGame('practice', 4, 5)">Medium (4x5)</button>
-        <button onclick="startGame('practice', 5, 6)">Hard (5x6)</button>
+        <button onclick="startGame('practice', 3, 4)">Fácil (3x4)</button>
+        <button onclick="startGame('practice', 4, 5)">Médio (4x5)</button>
+        <button onclick="startGame('practice', 5, 6)">Difícil (5x6)</button>
       </div>
       <div id="game-board"></div>
     </div>
@@ -96,24 +28,24 @@
       let gameBoard = document.getElementById("game-board");
       let gameTitle = document.getElementById("game-title");
       let cardImages = [
-        "src/garnet.jpg",
-        "src/perola.jpg",
-        "src/Steven-Universe.jpg",
-        "src/connie.jpg",
-        "src/ametista.jpg",
-        "src/pai steven.jpg",
-        "src/Quick.jpg",
-        "src/evee.jpeg",
-        "src/10.jpg",
-        "src/12.jpg",
-        "src/11.png",
-        "src/Silver.png",
-        "src/420.png",
-        "src/111.jpg",
-        "src/121.jpg",
-        "src/122.jpg",
-        "src/1223.png",
-        "src/234.png",
+        "src/jujuba.jpg",
+        "src/jake.jpg",
+        "src/lady iris.jpg",
+        "src/rei da noitosfera.jpg",
+        "src/marcelinne.jpg",
+        "src/Ricardio.jpg",
+        "src/gunther.jpg",
+        "src/shoko.jpg",
+        "src/simon.webp",
+        "src/princesafogo.jpg",
+        "src/fin.jpg",
+        "src/canelinha.jpg",
+        "src/Betty Grof.jpg",
+        // "src/111.jpg",
+        // "src/121.jpg",
+        // "src/122.jpg",
+        // "src/1223.png",
+        // "src/234.png",
       ];
       let cardArray = [];
       let flippedCards = [];
