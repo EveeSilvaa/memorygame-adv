@@ -1,10 +1,4 @@
----
-
-<<<<<<< HEAD
 # Jogo da Memória - Hora de Aventura
-=======
-# Hora de Aventura Jogo da Memória (Em Desenvolvimento)
->>>>>>> fa87458d11e4d291cd25f6b96b8e167e60ed5b70
 
 Um jogo da memória com personagens de Hora de Aventura, projetado com recursos de acessibilidade para pessoas com dificuldades de aprendizado.
 
@@ -37,7 +31,7 @@ Um jogo da memória com personagens de Hora de Aventura, projetado com recursos 
 - Tela de game over com estatísticas
 
 ## 🎵 Sistema de Som
- 
+
 - Sons de sino únicos para cada personagem
 - Efeitos sonoros para:
   - Virar carta
