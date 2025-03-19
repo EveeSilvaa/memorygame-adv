@@ -1,97 +1,109 @@
-# Steven Universe Memory Game (In Development)
+# Adventure Time Memory Game
 
-Welcome to the **Steven Universe Memory Game**, a memory game project inspired by the _Steven Universe_ universe. This game is being developed in Python using the `tkinter` library for the graphical interface. The goal is to create a fun game where players can test their memory skills by matching iconic characters from the animated series!
+A memory card game featuring Adventure Time characters, designed with accessibility features for people with learning difficulties.
 
-## 🌐 Languages
+## 🎮 Features
 
-- [English Version](README-ENG.md)
-- [Versão em Português](README.md)
+- Memory card matching game with Adventure Time characters
+- Sound system with unique bell sounds for each card
+- Countdown timer
+- Scoring system
+- Thematic background music
+- Responsive and adaptive interface
+- Sound settings menu
+- Help manual with controls and tips
+- Smooth animations (144 FPS)
 
-## ⚠️ Project Status
+## 🎯 Controls
 
-**This project is still in development**. Some key features are not yet implemented, and new features are being added gradually. Feel free to explore the code and contribute!
+- Mouse Click: Select card
+- ESC: Return to previous menu
+- P: Pause/Resume game
+- R: Restart game
+- H: Open help manual
 
-## Testing
+## 🎨 Interface
 
-| Status  | Task               | Notes                                                                 |
-|---------|--------------------|-----------------------------------------------------------------------|
-| ✅      | Initial Setup       | Completed the setup of Pygame and Tkinter version.                     |
-| ⚠️      | Port to Web Version | HTML, CSS, and JS port in progress with enhanced UI and animations.   |
-| ✅      | Game Logic          | Fully implemented game logic in both Pygame and JavaScript versions.  |
-| 🛠️      | Cross-browser Support | Need further testing to ensure compatibility on all major browsers.   |
-| ✅      | Image Optimization  | Optimized the images for faster loading and better performance.       |
+- Thematic main menu background
+- Buttons with hover effects
+- Smooth scrolling help manual
+- Visual game status indicators
+- Game over screen with statistics
 
-## Notes
+## 🎵 Sound System
 
-- The game includes **background music** and a **beautiful menu interface** with difficulty and mode selection.
-- The **web version** has a more polished UI with improved animations and interactivity.
-- The game is fully playable in **offline mode**.
-- Further improvements are planned for enhancing **mobile responsiveness** and **accessibility**.
-
-## Status
-
-- **Current Project Status**: In progress (Web version port nearing completion)
-- **Next Steps**: Add more characters, improve animations, and finalize the HTML/CSS version.
-
-
-## 🎮 Planned Features
-
-- User-friendly graphical interface created with `tkinter`.
-- Thematic cards featuring characters from _Steven Universe_ (Steven, Garnet, Peridot, and others).
-- Basic gameplay where the player must find pairs of identical cards.
-- Timer to challenge players to complete the game in the shortest time possible.
-- Scoring system based on the number of attempts.
-- Support for multiple difficulty levels (future).
-
-## 🚧 Features in Development
-
-- [ ] Card shuffling system.
-- [ ] Card flip animation.
-- [ ] Add sound effects and background music (a test track is included! (_^\_^_)).
-- [ ] Improve interface and visual feedback for correct/incorrect matches.
-- [ ] Implement difficulty levels: easy, medium, hard.
-
-## 🛠️ Requirements
-
-To run this project on your machine, you will need:
-
-- **Python 3.x**
-- The `tkinter` library (standard in most Python distributions)
+- Unique bell sounds for each character
+- Sound effects for:
+  - Card flip
+  - Match found
+  - Victory
+  - Game Over
+- Thematic background music
+- Adjustable volume controls
 
 ## 🚀 How to Run the Game
 
 1. Clone this repository:
-
    ```bash
-   git clone https://github.com/EveeSilvaa/MemoryGame
+   git clone https://github.com/EveeSilvaa/memorygame-adv
    ```
 
-2. Entre the project Directory:
-
+2. Enter the project directory:
    ```bash
-   cd MemoryGame
+   cd memorygame-adv
    ```
 
-3. Execute main.py:
-
+3. Run the game:
    ```bash
    python main.py
    ```
 
-> **Note**: As the game is still in development, some features may be incomplete or missing.
+## 📂 Project Structure
+
+```
+memorygame-adv/
+│
+├── src/                    # Character images
+│   ├── fin.jpg
+│   ├── jake.jpg
+│   └── ...
+│
+├── sounds/                 # Sound effects
+│   ├── bells/             # Bell sounds for each character
+│   ├── match.wav
+│   ├── game_over.wav
+│   └── victory.wav
+│
+├── main.py                 # Main game file
+├── README.md              # Portuguese version
+└── README-ENG.md          # English version
+```
+
+## 🛠️ Requirements
+
+- Python 3.8 or higher
+- Pygame
+- Sound files in the `sounds` directory
+- Images in the `src` directory
 
 ## 💡 Contributions
 
 Contributions are welcome! If you want to add new features, fix bugs, or improve the design, feel free to open a **pull request**.
 
-1. **Fork** this repository.
-2. Create a new branch with your feature (`git checkout -b new-feature`).
-3. **Commit** your changes (`git commit -m 'Add new feature'`).
-4. **Push** to the branch (`git push origin new-feature`).
-5. Open a **pull request**.
+1. **Fork** this repository
+2. Create a new branch with your feature (`git checkout -b new-feature`)
+3. **Commit** your changes (`git commit -m 'Add new feature'`)
+4. **Push** to the branch (`git push origin new-feature`)
+5. Open a **pull request**
+
+## 📝 License
+
+This project is licensed under the [MIT License](LICENSE).
+
+---
 
 ### ⭐ Acknowledgements
 
-Thank you for checking out this project! _Steven Universe_ is an inspiration for many of us, and I hope this game brings a bit of the magic of that universe to the players.
+Thank you for checking out this project! _Adventure Time_ is an inspiration for many of us, and I hope this game brings a bit of the magic of that universe to the players.
 
 ---

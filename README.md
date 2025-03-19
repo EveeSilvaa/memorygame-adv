@@ -1,13 +1,117 @@
+# Jogo da Memória - Hora de Aventura
+
+Um jogo da memória com personagens de Hora de Aventura, projetado com recursos de acessibilidade para pessoas com dificuldades de aprendizado.
+
+## 🎮 Funcionalidades
+
+- Jogo da memória com personagens de Hora de Aventura
+- Sistema de sons com efeitos sonoros únicos para cada carta
+- Timer com contagem regressiva
+- Sistema de pontuação
+- Música de fundo temática
+- Interface responsiva e adaptativa
+- Menu de configurações de som
+- Manual de ajuda com controles e dicas
+- Animações suaves (144 FPS)
+
+## 🎯 Controles
+
+- Clique do Mouse: Selecionar carta
+- ESC: Voltar ao menu anterior
+- P: Pausar/Continuar jogo
+- R: Reiniciar jogo
+- H: Abrir manual de ajuda
+
+## 🎨 Interface
+
+- Menu principal com fundo temático
+- Botões com efeitos de hover
+- Barra de rolagem suave no manual
+- Indicadores visuais de status do jogo
+- Tela de game over com estatísticas
+
+## 🎵 Sistema de Som
+
+- Sons de sino únicos para cada personagem
+- Efeitos sonoros para:
+  - Virar carta
+  - Encontrar par
+  - Vitória
+  - Game Over
+- Música de fundo temática
+- Controles de volume ajustáveis
+
+## 🚀 Como Rodar o Jogo
+
+1. Clone este repositório:
+   ```bash
+   git clone https://github.com/EveeSilvaa/memorygame-adv
+   ```
+
+2. Entre no diretório do projeto:
+   ```bash
+   cd memorygame-adv
+   ```
+
+3. Execute o jogo:
+   ```bash
+   python main.py
+   ```
+
+## 📂 Estrutura do Projeto
+
+```
+memorygame-adv/
+│
+├── src/                    # Imagens dos personagens
+│   ├── fin.jpg
+│   ├── jake.jpg
+│   └── ...
+│
+├── sounds/                 # Efeitos sonoros
+│   ├── bells/             # Sons de sino para cada personagem
+│   ├── match.wav
+│   ├── game_over.wav
+│   └── victory.wav
+│
+├── main.py                 # Arquivo principal do jogo
+├── README.md              # Versão em português
+└── README-ENG.md          # Versão em inglês
+```
+
+## 🛠️ Requisitos
+
+- Python 3.8 ou superior
+- Pygame
+- Arquivos de som na pasta `sounds`
+- Imagens na pasta `src`
+
+## 💡 Contribuições
+
+Contribuições são bem-vindas! Se você deseja adicionar novos recursos, corrigir bugs ou melhorar o design, sinta-se à vontade para abrir um **pull request**.
+
+1. Faça um **fork** deste repositório
+2. Crie um novo branch com sua funcionalidade (`git checkout -b nova-funcionalidade`)
+3. Faça um **commit** das suas alterações (`git commit -m 'Adiciona nova funcionalidade'`)
+4. Faça o **push** para o branch (`git push origin nova-funcionalidade`)
+5. Abra um **pull request**
+
+## 📝 Licença
+
+Este projeto está licenciado sob a [Licença MIT](LICENSE).
+
 ---
 
-# Hora de Aventura Jogo da Memória (Em Desenvolvimento)
+### ⭐ Agradecimentos
 
-Bem-vindo ao **Hora de Aventura Memory Game**, um projeto de jogo da memória inspirado no universo de *Hora de Aventura*. Este jogo está sendo desenvolvido em Python, utilizando a biblioteca `tkinter` para a interface gráfica. O objetivo é criar um jogo divertido, onde os jogadores podem testar suas habilidades de memória, combinando personagens icônicos do desenho animado!
+Obrigado por conferir este projeto! _Hora de Aventura_ é uma inspiração para muitos de nós, e espero que este jogo traga um pouco da magia desse universo para os jogadores.
 
-## 🌐 Languages
+---
 
-- [English Version](README-ENG.md)
+## 🌐 Idiomas
+
 - [Versão em Português](README.md)
+- [English Version](README-ENG.md)
 
 ## ⚠️ Status do Projeto
 
