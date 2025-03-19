@@ -33,7 +33,7 @@ Um jogo da memória com personagens de Hora de Aventura, projetado com recursos 
 - Tela de game over com estatísticas
 
 ## 🎵 Sistema de Som
-
+ 
 - Sons de sino únicos para cada personagem
 - Efeitos sonoros para:
   - Virar carta
