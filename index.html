@@ -1,9 +1,9 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="pt-BR">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Jogo da Memória</title>
+    <title>Jogo da Memória - Hora de Aventura</title>
     <link rel="stylesheet" href="styles/styles.css" />
   </head>
   <body>
@@ -19,9 +19,9 @@
     <div class="game-container" id="game-container">
       <div id="timer">Tempo: 0s</div>
       <div id="difficulty-selection">
-        <button onclick="startGame('practice', 3, 4)">Fácil (3x4)</button>
-        <button onclick="startGame('practice', 4, 5)">Médio (4x5)</button>
-        <button onclick="startGame('practice', 5, 6)">Difícil (5x6)</button>
+        <img src="src/facil.png" alt="Fácil" onclick="startGame('practice', 3, 4)">
+        <img src="src/medio.png" alt="Médio" onclick="startGame('practice', 4, 5)">
+        <img src="src/dificil.png" alt="Difícil" onclick="startGame('practice', 5, 6)">
       </div>
       <div id="game-board"></div>
     </div>
@@ -76,10 +76,23 @@
         for (let i = 0; i < rows * cols; i++) {
           let card = document.createElement("div");
           card.classList.add("card");
-          card.dataset.image = cardArray[i];
+
+          // Cria a face frontal (imagem)
+          let front = document.createElement("div");
+          front.classList.add("front");
           let img = document.createElement("img");
           img.src = cardArray[i];
-          card.appendChild(img);
+          img.alt = "Carta";
+          front.appendChild(img);
+
+          // Cria a face traseira (verso)
+          let back = document.createElement("div");
+          back.classList.add("back");
+          back.textContent = "?"; // Texto ou ícone do verso da carta
+
+          card.appendChild(front);
+          card.appendChild(back);
+
           card.addEventListener("click", () => flipCard(card));
           gameBoard.appendChild(card);
         }
@@ -112,7 +125,7 @@
           !card.classList.contains("flipped") &&
           !matchedCards.includes(card)
         ) {
-          card.classList.add("flipped", "flip-animation");
+          card.classList.add("flipped");
           flippedCards.push(card);
 
           // Reproduz o som da carta (se habilitado)
@@ -130,18 +143,18 @@
 
       function checkMatch() {
         let [card1, card2] = flippedCards;
-        if (card1.dataset.image === card2.dataset.image) {
+        if (card1.querySelector(".front img").src === card2.querySelector(".front img").src) {
           card1.classList.add("matched");
           card2.classList.add("matched");
           matchedCards.push(card1, card2);
-          if (
-            matchedCards.length === document.querySelectorAll(".card").length
-          ) {
+          if (matchedCards.length === document.querySelectorAll(".card").length) {
             endGame();
           }
         } else {
-          card1.classList.remove("flipped");
-          card2.classList.remove("flipped");
+          setTimeout(() => {
+            card1.classList.remove("flipped");
+            card2.classList.remove("flipped");
+          }, 500);
         }
         flippedCards = [];
         moves++;
