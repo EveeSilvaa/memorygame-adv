@@ -7,13 +7,17 @@
     <link rel="stylesheet" href="styles/styles.css" />
   </head>
   <body>
+    <header class="header">
+      <ul class="nav">
+        <li><a href="index.html">Início</a></li>
+        <li><a href="#" onclick="showAccessibilitySettings()">Configurações de Acessibilidade</a></li>
+      </ul>
+    </header>
     <div id="menu">
-      <h1>Jogo da Memória Hora de Aventura</h1>
-      <p>Olá, seja bem-vindo(a), espero que se divirta!</p>
-      <button onclick="showModeSelection()">Iniciar Jogo</button>
+      <img src="src/botaoiniciarjogo.png" alt="Iniciar Jogo" onclick="showModeSelection()" style="cursor: pointer; width: 200px; height: auto;">
     </div>
     <div class="game-container" id="game-container">
-      <h2 id="game-title">Selecione a dificuldade</h2>
+      <div id="timer">Tempo: 0s</div>
       <div id="difficulty-selection">
         <button onclick="startGame('practice', 3, 4)">Fácil (3x4)</button>
         <button onclick="startGame('practice', 4, 5)">Médio (4x5)</button>
@@ -39,11 +43,6 @@
         "src/fin.jpg",
         "src/canelinha.jpg",
         "src/Betty Grof.jpg",
-        // "src/111.jpg",
-        // "src/121.jpg",
-        // "src/122.jpg",
-        // "src/1223.png",
-        // "src/234.png",
       ];
       let cardArray = [];
       let flippedCards = [];
@@ -52,6 +51,10 @@
       let maxMoves = 0;
       let timer;
       let startTime;
+
+      // Configurações de acessibilidade
+      let brailleDisplayEnabled = false;
+      let soundEnabled = true;
 
       function showModeSelection() {
         document.getElementById("menu").style.display = "none";
@@ -112,6 +115,13 @@
           card.classList.add("flipped", "flip-animation");
           flippedCards.push(card);
 
+          // Reproduz o som da carta (se habilitado)
+          if (soundEnabled) {
+            const cardName = card.dataset.image.split('/').pop().split('.')[0];
+            const sound = new Audio(`sounds/bells/${cardName}.wav`);
+            sound.play();
+          }
+
           if (flippedCards.length === 2) {
             setTimeout(() => checkMatch(), 500);
           }
@@ -139,6 +149,7 @@
 
       function updateTimer() {
         let elapsedTime = Math.floor((new Date().getTime() - startTime) / 1000);
+        document.getElementById("timer").textContent = `Tempo: ${elapsedTime}s`;
         if (elapsedTime >= maxMoves) {
           endGame();
         }
@@ -146,9 +157,21 @@
 
       function endGame() {
         clearInterval(timer);
-        alert(`Game Over!\nMoves: ${moves}`);
+        let elapsedTime = Math.floor((new Date().getTime() - startTime) / 1000);
+        alert(`Game Over!\nJogadas: ${moves}\nTempo: ${elapsedTime}s`);
         document.getElementById("menu").style.display = "block";
         gameContainer.style.display = "none";
+      }
+
+      // Função para mostrar as configurações de acessibilidade
+      function showAccessibilitySettings() {
+        const enableBraille = confirm("Deseja habilitar o Braille Display?");
+        brailleDisplayEnabled = enableBraille;
+
+        const enableSound = confirm("Deseja habilitar os sons das cartas?");
+        soundEnabled = enableSound;
+
+        alert(`Configurações atualizadas:\nBraille Display: ${brailleDisplayEnabled ? "Habilitado" : "Desabilitado"}\nSons: ${soundEnabled ? "Habilitados" : "Desabilitados"}`);
       }
     </script>
   </body>
