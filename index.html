@@ -5,15 +5,22 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Jogo da Memória - Hora de Aventura</title>
     <link rel="stylesheet" href="styles/styles.css" />
+    <!-- Sons principais -->
     <audio id="match-sound" src="sounds/match.wav" preload="auto"></audio>
     <audio id="game-over-sound" src="sounds/game-over.wav" preload="auto"></audio>
     <audio id="victory-sound" src="sounds/victory.wav" preload="auto"></audio>
     <audio id="background-music" src="sounds/background-music.mp3" preload="auto" loop></audio>
 
-    <!--sons dos personagens-->
+    <!-- Sons dos personagens -->
     <audio id="bell-fin" src="sounds/bells/bell1.wav" preload="auto"></audio>
-<audio id="bell-jake" src="sounds/bells/bell2.wav" preload="auto"></audio>
-<audio id="bell-jujuba" src="sounds/bells/bell3.wav" preload="auto"></audio>
+    <audio id="bell-jake" src="sounds/bells/bell2.wav" preload="auto"></audio>
+    <audio id="bell-jujuba" src="sounds/bells/bell3.wav" preload="auto"></audio>
+    <audio id="bell-marceline" src="sounds/bells/bell4.wav" preload="auto"></audio>
+    <audio id="bell-princesafogo" src="sounds/bells/bell5.wav" preload="auto"></audio>
+    <audio id="bell-caroco" src="sounds/bells/bell6.wav" preload="auto"></audio>
+    <audio id="bell-rei" src="sounds/bells/bell7.wav" preload="auto"></audio>
+    <audio id="bell-ricardio" src="sounds/bells/bell8.wav" preload="auto"></audio>
+    <audio id="bell-menta" src="sounds/bells/bell9.wav" preload="auto"></audio>
   </head>
   <body>
     <header class="header">
@@ -35,9 +42,9 @@
       <div id="game-board"></div>
     </div>
     <script>
+      // Variáveis globais
       let gameContainer = document.getElementById("game-container");
       let gameBoard = document.getElementById("game-board");
-      let gameTitle = document.getElementById("game-title");
       let cardImages = [
         "src/jujuba.jpg",
         "src/jake.jpg",
@@ -52,11 +59,6 @@
         "src/fin.jpg",
         "src/canelinha.jpg",
         "src/Betty Grof.jpg",
-        // "src/111.jpg",
-        // "src/121.jpg",
-        // "src/122.jpg",
-        // "src/1223.png",
-        // "src/234.png",
       ];
       let cardArray = [];
       let flippedCards = [];
@@ -65,117 +67,11 @@
       let maxMoves = 0;
       let timer;
       let startTime;
-      function showModeSelection() {
-        document.getElementById("menu").style.display = "none";
-        gameContainer.style.display = "block";
-      }
-      function startGame(mode, rows, cols) {
-        gameBoard.innerHTML = "";
-        cardArray = shuffleCards(createCardArray(rows, cols));
-        matchedCards = [];
-        flippedCards = [];
-        moves = 0;
+      let isBusy = false;
+      let soundEnabled = true;
+      let brailleDisplayEnabled = false;
 
-        maxMoves = mode === "time" ? 60 : Infinity;
-
-        gameBoard.style.gridTemplateColumns = `repeat(${cols}, 100px)`;
-        gameBoard.style.gridTemplateRows = `repeat(${rows}, 100px)`;
-
-        for (let i = 0; i < rows * cols; i++) {
-          let card = document.createElement("div");
-          card.classList.add("card");
-          card.dataset.image = cardArray[i];
-          let img = document.createElement("img");
-          img.src = cardArray[i];
-          card.appendChild(img);
-          card.addEventListener("click", () => flipCard(card));
-          gameBoard.appendChild(card);
-        }
-        startTime = new Date().getTime();
-        timer = setInterval(updateTimer, 1000);
-      }
-      function createCardArray(rows, cols) {
-        let numCards = rows * cols;
-        let cards = [];
-        for (let i = 0; i < numCards / 2; i++) {
-          let img = cardImages[i % cardImages.length];
-          cards.push(img, img);
-        }
-        return cards;
-      }
-      function shuffleCards(cards) {
-        for (let i = cards.length - 1; i > 0; i--) {
-          let j = Math.floor(Math.random() * (i + 1));
-          [cards[i], cards[j]] = [cards[j], cards[i]];
-        }
-        return cards;
-      }
-      function flipCard(card) {
-        if (
-          flippedCards.length < 2 &&
-          !card.classList.contains("flipped") &&
-          !matchedCards.includes(card)
-        ) {
-          card.classList.add("flipped", "flip-animation");
-          flippedCards.push(card);
-          if (flippedCards.length === 2) {
-            setTimeout(() => checkMatch(), 500);
-          }
-        }
-      }
-
-      if (soundEnabled) {
-        const cardName = card.dataset.image.split("/").pop().split(".")[0];
-        const sound = new Audio(`sounds/bells/${cardName}.wav`);
-        sound.play();
-      }
-
-      if(flippedCards.length === 2) {
-        setTimeout(() => checkMatch(), 500);
-      }
-
-      function checkMatch() {
-        let [card1, card2] = flippedCards;
-        if (card1.dataset.image === card2.dataset.image) {
-          card1.classList.add("matched");
-          card2.classList.add("matched");
-          matchedCards.push(card1, card2);
-          if (
-            matchedCards.length === document.querySelectorAll(".card").length
-          ) {
-            endGame();
-          }
-        } else {
-          card1.classList.remove("flipped");
-          card2.classList.remove("flipped");
-        }
-        flippedCards = [];
-        moves++;
-      }
-      function updateTimer() {
-        let elapsedTime = Math.floor((new Date().getTime() - startTime) / 1000);
-        if (elapsedTime >= maxMoves) {
-          endGame();
-        }
-      }
-      function endGame() {
-        clearInterval(timer);
-        alert(`Game Over!\nMoves: ${moves}`);
-        document.getElementById("menu").style.display = "block";
-        gameContainer.style.display = "none";
-      }
-
-       // Função para mostrar as configurações de acessibilidade
-      function showAccessibilitySettings() {
-        const enableBraille = confirm("Deseja habilitar o Braille Display?");
-        brailleDisplayEnabled = enableBraille;
-
-        const enableSound = confirm("Deseja habilitar os sons das cartas?");
-        soundEnabled = enableSound;
-
-        alert(`Configurações atualizadas:\nBraille Display: ${brailleDisplayEnabled ? "Habilitado" : "Desabilitado"}\nSons: ${soundEnabled ? "Habilitados" : "Desabilitados"}`);
-      }
-
+      // Sistema de Sons
       const SoundSystem = {
         sounds: {
           match: document.getElementById("match-sound"),
@@ -186,70 +82,212 @@
             fin: document.getElementById("bell-fin"),
             jake: document.getElementById("bell-jake"),
             jujuba: document.getElementById("bell-jujuba"),
-            marceline: document.getElementById("bell-marceline"),
+            marcelinne: document.getElementById("bell-marceline"),
             princesafogo: document.getElementById("bell-princesafogo"),
-            caroço: document.getElementById("bell-caroço"),
+            caroco: document.getElementById("bell-caroco"),
             rei: document.getElementById("bell-rei"),
             ricardio: document.getElementById("bell-ricardio"),
             menta: document.getElementById("bell-menta"),
           }
         },
-
-        //como configurar volume dos sons
+        
         volume: {
           music: 0.5,
           effects: 1.0
         },
-
-        // tocar efeitos sonoros
+        
         playEffect(name) {
-          if(!soundEnabled) return;
+          if (!soundEnabled) return;
           try {
             const sound = this.sounds[name];
-            if(sound) {
+            if (sound) {
               sound.volume = this.volume.effects;
               sound.currentTime = 0;
               sound.play();
             }
-          } catch(e) {
+          } catch (e) {
             console.error(`Erro ao tocar efeito sonoro: ${name}`, e);
           }
         },
-
-        // tocar sino especifico do personagem
+        
         playBell(character) {
-          if(!soundEnabled) return;
+          if (!soundEnabled) return;
           try {
             const bell = this.sounds.bells[character];
-            if(bell) {
+            if (bell) {
               bell.volume = this.volume.effects;
               bell.currentTime = 0;
               bell.play();
             }
-          } catch(e) {
+          } catch (e) {
             console.error(`Erro ao tocar sino do personagem: ${character}`, e);
           }
         },
-
-        // controlar musica de fundo
+        
         playBackgroundMusic() {
-        try {
-          this.sounds.backgroundMusic.volume = this.volume.music;
-          this.sounds.backgroundMusic.loop = true;
-          this.sounds.backgroundMusic.play();
-        } catch (e) {
-          console.error("Error playing background music:", e);
-        }
-      },
-  
+          try {
+            this.sounds.backgroundMusic.volume = this.volume.music;
+            this.sounds.backgroundMusic.loop = true;
+            this.sounds.backgroundMusic.play();
+          } catch (e) {
+            console.error("Erro ao tocar música de fundo:", e);
+          }
+        },
+        
         stopBackgroundMusic() {
-        this.sounds.backgroundMusic.pause();
-        this.sounds.backgroundMusic.currentTime = 0;
+          this.sounds.backgroundMusic.pause();
+          this.sounds.backgroundMusic.currentTime = 0;
+        }
+      };
+
+      // Funções do jogo
+      function showModeSelection() {
+        document.getElementById("menu").style.display = "none";
+        gameContainer.style.display = "block";
+        SoundSystem.playBackgroundMusic();
       }
-    };
-// Inicialize a música de fundo quando o jogo começar
-    SoundSystem.playBackgroundMusic();
+
+      function startGame(mode, rows, cols) {
+        gameBoard.innerHTML = "";
+        cardArray = shuffleCards(createCardArray(rows, cols));
+        matchedCards = [];
+        flippedCards = [];
+        moves = 0;
+        document.getElementById("timer").textContent = "Tempo: 0s";
+
+        maxMoves = mode === "time" ? 60 : Infinity;
+
+        gameBoard.style.gridTemplateColumns = `repeat(${cols}, 100px)`;
+        gameBoard.style.gridTemplateRows = `repeat(${rows}, 100px)`;
+
+        for (let i = 0; i < rows * cols; i++) {
+          let card = document.createElement("div");
+          card.classList.add("card");
+          card.dataset.image = cardArray[i];
+          card.dataset.character = cardArray[i].split('/').pop().split('.')[0];
+          
+          let front = document.createElement("div");
+          front.classList.add("front");
+          let img = document.createElement("img");
+          img.src = cardArray[i];
+          img.alt = "Carta";
+          front.appendChild(img);
+          
+          let back = document.createElement("div");
+          back.classList.add("back");
+          back.textContent = "?";
+          
+          card.appendChild(front);
+          card.appendChild(back);
+          
+          card.addEventListener("click", () => flipCard(card));
+          gameBoard.appendChild(card);
+        }
+
+        startTime = new Date().getTime();
+        timer = setInterval(updateTimer, 1000);
+      }
+
+      function createCardArray(rows, cols) {
+        let numCards = rows * cols;
+        let cards = [];
+        for (let i = 0; i < numCards / 2; i++) {
+          let img = cardImages[i % cardImages.length];
+          cards.push(img, img);
+        }
+        return cards;
+      }
+
+      function shuffleCards(cards) {
+        for (let i = cards.length - 1; i > 0; i--) {
+          let j = Math.floor(Math.random() * (i + 1));
+          [cards[i], cards[j]] = [cards[j], cards[i]];
+        }
+        return cards;
+      }
       
+      function flipCard(card) {
+        if (isBusy || card.classList.contains("flipped") || matchedCards.includes(card)) {
+          return;
+        }
+
+        isBusy = true;
+        card.classList.add("flipped");
+        flippedCards.push(card);
+        
+        // Tocar som do personagem
+        SoundSystem.playBell(card.dataset.character);
+
+        if (flippedCards.length === 2) {
+          setTimeout(() => {
+            checkMatch();
+            isBusy = false;
+          }, 500);
+        } else {
+          isBusy = false;
+        }
+      }
+
+      function checkMatch() {
+        let [card1, card2] = flippedCards;
+        if (card1.dataset.image === card2.dataset.image) {
+          SoundSystem.playEffect('match');
+          card1.classList.add("matched");
+          card2.classList.add("matched");
+          matchedCards.push(card1, card2);
+          
+          if (matchedCards.length === document.querySelectorAll(".card").length) {
+            SoundSystem.playEffect('victory');
+            endGame();
+          }
+        } else {
+          setTimeout(() => {
+            card1.classList.remove("flipped");
+            card2.classList.remove("flipped");
+          }, 500);
+        }
+        flippedCards = [];
+        moves++;
+      }
+
+      function updateTimer() {
+        let elapsedTime = Math.floor((new Date().getTime() - startTime) / 1000);
+        document.getElementById("timer").textContent = `Tempo: ${elapsedTime}s`;
+        if (elapsedTime >= maxMoves) {
+          endGame();
+        }
+      }
+
+      function endGame() {
+        clearInterval(timer);
+        SoundSystem.playEffect('game-over');
+        let elapsedTime = Math.floor((new Date().getTime() - startTime) / 1000);
+        alert(`Game Over!\nJogadas: ${moves}\nTempo: ${elapsedTime}s`);
+        document.getElementById("menu").style.display = "block";
+        gameContainer.style.display = "none";
+        SoundSystem.stopBackgroundMusic();
+      }
+
+      function showAccessibilitySettings() {
+        const enableSound = confirm("Deseja habilitar os efeitos sonoros?");
+        soundEnabled = enableSound;
+        
+        if (enableSound) {
+          const enableMusic = confirm("Deseja habilitar a música de fundo?");
+          if (enableMusic) {
+            SoundSystem.playBackgroundMusic();
+          } else {
+            SoundSystem.stopBackgroundMusic();
+          }
+        } else {
+          SoundSystem.stopBackgroundMusic();
+        }
+
+        const enableBraille = confirm("Deseja habilitar o Braille Display?");
+        brailleDisplayEnabled = enableBraille;
+
+        alert(`Configurações atualizadas:\nEfeitos Sonoros: ${soundEnabled ? "Habilitados" : "Desabilitados"}\nMúsica: ${soundEnabled ? "Habilitada" : "Desabilitada"}\nBraille Display: ${brailleDisplayEnabled ? "Habilitado" : "Desabilitado"}`);
+      }
     </script>
   </body>
 </html>
