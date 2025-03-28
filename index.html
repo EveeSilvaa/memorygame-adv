@@ -9,7 +9,7 @@
     <audio id="match-sound" src="sounds/match.wav" preload="auto"></audio>
     <audio id="game-over-sound" src="sounds/game-over.wav" preload="auto"></audio>
     <audio id="victory-sound" src="sounds/victory.wav" preload="auto"></audio>
-    <audio id="background-music" src="sounds/background-music.mp3" preload="auto" loop></audio>
+    <audio id="background-music" src="sounds/island-song.mp3" preload="auto" loop></audio>
 
     <!-- Sons dos personagens -->
     <audio id="bell-fin" src="sounds/bells/bell1.wav" preload="auto"></audio>
@@ -35,9 +35,9 @@
     <div class="game-container" id="game-container">
       <div id="timer">Tempo: 0s</div>
       <div id="difficulty-selection">
-        <img src="src/facil.png" alt="Fácil" onclick="startGame('practice', 3, 4)">
-        <img src="src/medio.png" alt="Médio" onclick="startGame('practice', 4, 5)">
-        <img src="src/dificil.png" alt="Difícil" onclick="startGame('practice', 5, 6)">
+        <img src="src/dificuldades/facil.png" alt="Fácil" onclick="startGame('practice', 3, 4)">
+        <img src="src/dificuldades/medio.png" alt="Médio" onclick="startGame('practice', 4, 5)">
+        <img src="src/dificuldades/dificil.png" alt="Difícil" onclick="startGame('practice', 5, 6)">
       </div>
       <div id="game-board"></div>
     </div>
@@ -46,19 +46,16 @@
       let gameContainer = document.getElementById("game-container");
       let gameBoard = document.getElementById("game-board");
       let cardImages = [
-        "src/jujuba.jpg",
-        "src/jake.jpg",
-        "src/lady iris.jpg",
-        "src/rei da noitosfera.jpg",
-        "src/marcelinne.jpg",
-        "src/Ricardio.jpg",
-        "src/gunther.jpg",
-        "src/shoko.jpg",
-        "src/simon.webp",
-        "src/princesafogo.jpg",
         "src/fin.jpg",
-        "src/canelinha.jpg",
-        "src/Betty Grof.jpg",
+        "src/jake.jpg",
+        "src/jujuba.jpg",
+        "src/marcelinne.jpg",
+        "src/princesafogo.jpg",
+        "src/caroço.jpg",
+        "src/rei gelado.jpg",
+        "src/Ricardio.jpg",
+        "src/menta.jpg",
+        "src/rei da noitosfera.jpg",
       ];
       let cardArray = [];
       let flippedCards = [];

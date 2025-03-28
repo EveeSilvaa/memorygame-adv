@@ -389,7 +389,7 @@ body {
   }
 }
 
-/* Técnica Avançada de Responsividade */
+/* Técnicas Avançada de Responsividade */
 @supports (height: 100svh) {
   body {
     height: 100svh;
