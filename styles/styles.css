@@ -52,18 +52,24 @@ body {
 /* Menu Inicial */
 #menu {
   text-align: center;
-  margin-top: 15vh;
   display: flex;
   flex-direction: column;
+  justify-content: flex-end;
   align-items: center;
-  gap: 20px;
+  min-height: 80vh; /* Ajuste paara colocar mais embaixo */
+  padding-bottom: 5%;
+  box-sizing: border-box;
+
 }
 
 #menu img {
   cursor: pointer;
   transition: transform 0.3s ease;
   max-width: 250px;
+  width: 100%;
   height: auto;
+  margin-top: 20px; /* Espaço adicional acima do botão se necessário */
+  
 }
 
 #menu img:hover {
@@ -86,9 +92,15 @@ body {
 /* Timer */
 #timer {
   font-size: 1.5rem;
-  margin-bottom: 20px;
-  color: #f8d64e;
   font-weight: bold;
+  color: #ffffff;
+  margin-bottom: 20px;
+  transition: color 0.3s;
+}
+
+#timer.time-warning {
+  color: #ff0000;
+  animation: pulse 0.5s infinite alternate;
 }
 
 /* Seleção de Dificuldade */

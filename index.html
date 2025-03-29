@@ -137,6 +137,14 @@
         }
       };
 
+      let timeLeft;
+      let countdownInterval;
+      const timeLimits = {
+        easy: 60,
+        medium: 120,
+        hard: 180
+      };
+
       // Funções do jogo
       function showModeSelection() {
         document.getElementById("menu").style.display = "none";
@@ -145,6 +153,29 @@
       }
 
       function startGame(mode, rows, cols) {
+        // Defina o tempo limite baseado na dificuldade
+       if (cols === 4) timeLeft = timeLimits.easy;
+       else if (cols === 5) timeLeft = timeLimits.medium;
+       else timeLeft = timeLimits.hard;
+
+        // Atualize o display
+      updateTimerDisplay();
+  
+       // Pare qualquer contador existente
+      if (countdownInterval) {
+      clearInterval(countdownInterval);
+      }
+  
+  // Inicie o contador
+      countdownInterval = setInterval(() => {
+      timeLeft--;
+      updateTimerDisplay();
+    
+      if (timeLeft <= 0) {
+        timeUp();
+      }
+      }, 1000);
+  
         gameBoard.innerHTML = "";
         cardArray = shuffleCards(createCardArray(rows, cols));
         matchedCards = [];
@@ -184,6 +215,35 @@
         startTime = new Date().getTime();
         timer = setInterval(updateTimer, 1000);
       }
+
+      function updateTimerDisplay() {
+      const minutes = Math.floor(timeLeft / 60);
+      const seconds = timeLeft % 60;
+      document.getElementById("timer").textContent = 
+      `Tempo: ${minutes}:${seconds < 10 ? '0' : ''}${seconds}`;
+  
+      // Mude a cor quando o tempo estiver acabando
+      if (timeLeft <= 10) {
+      document.getElementById("timer").classList.add("time-warning");
+      } else {
+      document.getElementById("timer").classList.remove("time-warning");
+    }
+  }
+
+      function timeUp() {
+      clearInterval(countdownInterval);
+      SoundSystem.stopBackgroundMusic();
+      SoundSystem.playEffect("game-over");
+      alert("O tempo acabou! Você perdeu o jogo.");
+      resetGame();
+    }
+
+      function resetGame() {
+       clearInterval(countdownInterval);
+       document.getElementById("game-board").innerHTML = "";
+       document.getElementById("menu").style.display = "block";
+      gameContainer.style.display = "none";
+    }
 
       function createCardArray(rows, cols) {
         let numCards = rows * cols;
